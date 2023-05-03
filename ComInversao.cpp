@@ -1,6 +1,6 @@
 /* Esta versão do jantar dos filosofos apresenta a solução do problema
  * apresentado no outro código. Esta solução apresenta uma inversão da captura
- * do garfo do primeiro filosofo, onde ao inves de pegar o da esqueda depois
+ * do garfo do filosofo, onde ao inves de pegar o da esqueda depois
  * direita, pega o da direita e depois o da esquerda. A fim de evitar o impasse
  * por espera circular.
  */
@@ -27,7 +27,7 @@ void filosofo(int i) {
   int garfoDir = (i + 1) % N;
   while (true) {
     medita();
-    if (i == 0) {
+    if (garfoEsq > garfoDir) {
       // Primeiro filósofo pega os garfos em ordem inversa
       sem_wait(&garfo[garfoDir]);  // Bloqueia o garfo à direita do filósofo
       sem_wait(&garfo[garfoEsq]);  // Bloqueia o garfo à esquerda do filósofo
